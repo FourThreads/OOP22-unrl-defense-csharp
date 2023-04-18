@@ -1,5 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeveriTommaso", "SeveriTommaso\SeveriTommaso.csproj", "{BFFBD2C0-1147-4487-A1FE-BAC128796553}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CerediTommaso", "CerediTommaso\CerediTommaso.csproj", "{962D3016-C2B9-46F2-8706-D0403F776136}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudaFrancesco", "BudaFrancesco\BudaFrancesco.csproj", "{01B30173-44ED-4A28-8D7E-C6DAB41698F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagliaDanilo", "MagliaDanilo\MagliaDanilo.csproj", "{5751510F-70DF-4897-AC36-6ED0506C8F3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
