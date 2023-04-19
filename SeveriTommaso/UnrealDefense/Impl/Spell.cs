@@ -1,6 +1,6 @@
-namespace SeveriTommaso.UnrealDefense.Impl
+namespace UnrealDefense.Impl
 {   
-    using SeveriTommaso.UnrealDefense.Api;
+    using UnrealDefense.Api;
     /// <summary>
     /// Implementation of a generic spell in a tower defense game.
     /// </summary>

@@ -1,4 +1,6 @@
-namespace SeveriTommaso.UnrealDefense.Impl
+using System.Collections.Generic;
+
+namespace UnrealDefense.Impl
 {
     /// <summary>
     /// An ice spell used in a tower defense game to slow down enemies.

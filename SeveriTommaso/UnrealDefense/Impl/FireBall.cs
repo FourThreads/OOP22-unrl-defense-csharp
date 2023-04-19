@@ -1,4 +1,4 @@
-namespace SeveriTommaso.UnrealDefense.Impl
+namespace UnrealDefense.Impl
 {
     /**
     * A fireball spell that can be used in a tower defense game.

@@ -1,4 +1,6 @@
-namespace SeveriTommaso.UnrealDefense.Api
+using System.Collections.Generic;
+
+namespace UnrealDefense.Api
 {
     /// <summary>
     /// A player in a strategic game where his position is irrelevant and spells can

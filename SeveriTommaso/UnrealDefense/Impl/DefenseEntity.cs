@@ -1,4 +1,4 @@
-using SeveriTommaso.UnrealDefense.Api;
+using UnrealDefense.Api;
 
 public abstract class DefenseEntity : IEntity
 {

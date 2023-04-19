@@ -1,4 +1,4 @@
-namespace SeveriTommaso.UnrealDefense.Api
+namespace UnrealDefense.Api
 {
     /// <summary>
     /// A spell that can be used by a player in a strategic game.

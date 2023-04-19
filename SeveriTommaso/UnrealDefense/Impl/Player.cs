@@ -1,7 +1,8 @@
-namespace SeveriTommaso.UnrealDefense.Impl
+namespace UnrealDefense.Impl
 {
     using System.Collections.Generic;
-    using SeveriTommaso.UnrealDefense.Api;
+    using System.Linq;
+    using UnrealDefense.Api;
 
     /// <summary>
     /// The main player in a tower defense game.
@@ -26,7 +27,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
 
         public bool BuildTower(IPosition pos, string towerName) => World.TryBuildTower(pos, towerName);
 
-        public bool ThrowSpell(IPosition pos, String name) => _spells.ContainsKey(name) && _spells[name].IfPossibleActivate(pos);
+        public bool ThrowSpell(IPosition pos, string name) => _spells.ContainsKey(name) && _spells[name].IfPossibleActivate(pos);
 
         public void UpdateSpellState(long elapsed)
         {
