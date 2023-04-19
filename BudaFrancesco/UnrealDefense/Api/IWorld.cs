@@ -1,5 +1,9 @@
+using System.Runtime.InteropServices;
+using System.Xml.XPath;
+
 namespace BudaFrancesco.UnrealDefense.Api
 {
+    using System.Collections.Generic;
     public interface IWorld
     {
         /// <summary>
@@ -21,16 +25,29 @@ namespace BudaFrancesco.UnrealDefense.Api
             Defeat
         }
 
+        Boolean TryBuildTower(IPosition pos, String towerName);
+
+        void SpawnEnemy(IEnemy enemy, IPosition pos);
+
+        IList<IEnemy> SorroundingEnemies(IPosition center, double radius);
+
+        IList<IEntity> getSceneEntities();
+
         /// <returns> the number of hearts of the castle </returns> 
         int GetHearts();
 
         /// <returns>  a set of the available positions </returns>
-        Set<IPosition> GetAvailablePositions();
+        ISet<IPosition> GetAvailablePositions();
 
         /// <returns> the money in the bank </returns>
         double GetMoney();
 
+        ISet<ITower> GetAvailableTowers();
+
+        IPath getPath();
+
         /// <returns> the game state </returns>
         GameState GetGameState();
     }
+    
 }
