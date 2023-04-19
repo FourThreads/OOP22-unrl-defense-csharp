@@ -4,7 +4,7 @@ namespace SeveriTommaso.UnrealDefense.Api
     /// A player in a strategic game where his position is irrelevant and spells can
     /// be used
     /// </summary>
-    /// <author> tommaso.severi2@studio.unibo.it
+    /// <author> tommaso.severi2@studio.unibo.it </author>
     public interface IPlayer
     {
         /// <summary>

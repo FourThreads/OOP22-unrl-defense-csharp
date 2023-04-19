@@ -1,4 +1,4 @@
-public class WorldImpl : IWorld
+public class World : IWorld
 {
     public ISet<IEnemy> SorroundingEnemies(IPosition pos, double radius)
     {
