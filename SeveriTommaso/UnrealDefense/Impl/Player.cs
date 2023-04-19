@@ -6,8 +6,8 @@ namespace SeveriTommaso.UnrealDefense.Impl
     /// <summary>
     /// The main player in a tower defense game.
     /// </summary>
-    /// <author> tommaso.severi2@studio.unibo.it
-    public sealed class PlayerImpl : IPlayer
+    /// <author> tommaso.severi2@studio.unibo.it </author>
+    public sealed class Player : IPlayer
     {
         private IDictionary<string, ISpell> _spells;
         public string Name { get; set; }
@@ -17,10 +17,10 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// <summary>
         /// Creates a new player.
         /// </summary>
-        public PlayerImpl()
+        public Player()
         {
             Name = "";
-            World = new WorldImpl();
+            World = new World();
             _spells = new Dictionary<string, ISpell>();
         }
 

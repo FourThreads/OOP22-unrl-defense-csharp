@@ -3,7 +3,7 @@ namespace SeveriTommaso.UnrealDefense.Api
     /// <summary>
     /// A spell that can be used by a player in a strategic game.
     /// </summary>
-    /// <author> tommaso.severi2@studio.unibo.it
+    /// <author> tommaso.severi2@studio.unibo.it </author>
     public interface ISpell : IEntity
     {
         /// <summary>

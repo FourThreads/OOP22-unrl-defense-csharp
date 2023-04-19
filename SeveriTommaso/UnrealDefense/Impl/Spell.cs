@@ -4,13 +4,13 @@ namespace SeveriTommaso.UnrealDefense.Impl
     /// <summary>
     /// Implementation of a generic spell in a tower defense game.
     /// </summary>
-    /// <author> tommaso.severi2@studio.unibo.it
-    public abstract class SpellImpl : DefenseEntity, ISpell
+    /// <author> tommaso.severi2@studio.unibo.it </author>
+    public abstract class Spell : DefenseEntity, ISpell
     {
         private bool _active;
         private long _lingerTime;
-        private long LingeringEffectTime { get; set; }
-        private long LingeringEffectFrequency { get; set; }
+        private readonly long _lingeringEffectTime;
+        private readonly long _lingeringEffectFrequency;
 
         /// <summary>
         /// Creates a new spell.
@@ -21,12 +21,12 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// <param name="rechargeTime">the recharge time of the spell</param>
         /// <param name="lingeringEffectTime">the time the spell will be active</param>
         /// <param name="lingeringEffectFrequency">the frequency in which the effect is applied</param>
-        public SpellImpl(string name, double radius, double damage, long rechargeTime, 
+        public Spell(string name, double radius, double damage, long rechargeTime, 
                 long lingeringEffectTime, long lingeringEffectFrequency) 
                 : base(name, radius, damage, rechargeTime)
         {
-            LingeringEffectTime = lingeringEffectTime;
-            LingeringEffectFrequency = lingeringEffectFrequency;
+            _lingeringEffectTime = lingeringEffectTime;
+            _lingeringEffectFrequency = lingeringEffectFrequency;
             _active = false;
             _lingerTime = 0;
         }
@@ -79,14 +79,14 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// Applies the effect of the spell to the enemies in range if possible.
         /// </summary>
         private void IfPossibleApplyEffect() {
-            if (_lingerTime >= LingeringEffectFrequency) {
+            if (_lingerTime >= _lingeringEffectFrequency) {
                 foreach (IEnemy e in ParentWorld.SorroundingEnemies(Position, Radius))
                 {
                     Effect(e);
                 }
-                this._lingerTime -= this.LingeringEffectFrequency;
+                this._lingerTime -= this._lingeringEffectFrequency;
             }
-            if (TimeSinceLastAction >= this.LingeringEffectTime) {
+            if (TimeSinceLastAction >= this._lingeringEffectTime) {
                 Deactivate();
             }
         }
