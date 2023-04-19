@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudaFrancesco", "BudaFrance
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagliaDanilo", "MagliaDanilo\MagliaDanilo.csproj", "{5751510F-70DF-4897-AC36-6ED0506C8F3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSeveri", "TestSeveri\TestSeveri.csproj", "{1702919D-6DCA-4FB8-8F93-1C5706F22EFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +24,9 @@ Global
 		{5751510F-70DF-4897-AC36-6ED0506C8F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFFBD2C0-1147-4487-A1FE-BAC128796553}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFFBD2C0-1147-4487-A1FE-BAC128796553}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1702919D-6DCA-4FB8-8F93-1C5706F22EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1702919D-6DCA-4FB8-8F93-1C5706F22EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1702919D-6DCA-4FB8-8F93-1C5706F22EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1702919D-6DCA-4FB8-8F93-1C5706F22EFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
