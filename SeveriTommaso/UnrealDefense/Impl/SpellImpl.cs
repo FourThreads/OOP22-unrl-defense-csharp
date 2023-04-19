@@ -5,12 +5,10 @@ namespace SeveriTommaso.UnrealDefense.Impl
     /// Implementation of a generic spell in a tower defense game.
     /// </summary>
     /// <author> tommaso.severi2@studio.unibo.it
-    public abstract class SpellImpl : DefenseEntity, ISpell {
-
+    public abstract class SpellImpl : DefenseEntity, ISpell
+    {
         private bool _active;
         private long _lingerTime;
-        public bool IsActive { get => _active; }
-        public bool IsReady { get => TimeSinceLastAction >= AttackRate && !IsActive; }
         private long LingeringEffectTime { get; set; }
         private long LingeringEffectFrequency { get; set; }
 
@@ -33,8 +31,12 @@ namespace SeveriTommaso.UnrealDefense.Impl
             _lingerTime = 0;
         }
 
+        public bool IsActive() => _active;
+
+        public bool IsReady() => TimeSinceLastAction >= AttackRate && !IsActive();
+
         public bool IfPossibleActivate(IPosition position) {
-            if (!IsActive && IsReady) {
+            if (!IsActive() && IsReady()) {
                 Activate();
                 Position = position;
                 CheckAttack();
@@ -52,7 +54,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
 
         public override void UpdateState(long time) {
             IncrementTime(time);
-            if (IsActive) {
+            if (IsActive()) {
                 _lingerTime += time;
                 IfPossibleApplyEffect();
             }

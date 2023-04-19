@@ -37,6 +37,6 @@ namespace SeveriTommaso.UnrealDefense.Impl
         }
 
         /// <returns>the set of active spells</returns>
-        public ISet<ISpell> GetActiveSpells() => (ISet<ISpell>)Spells.Select(sp => sp.IsActive).ToHashSet();
+        public ISet<ISpell> GetActiveSpells() => (ISet<ISpell>)Spells.Select(sp => sp.IsActive()).ToHashSet();
     }
 }

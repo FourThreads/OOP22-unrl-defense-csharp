@@ -17,10 +17,10 @@ namespace SeveriTommaso.UnrealDefense.Api
         double Radius { get; }
 
         /// <returns>true if the spell is being used, false otherwise</returns>
-        bool IsActive { get; }
+        bool IsActive();
 
         /// <returns>true if the spell is ready to be used, false otherwise</returns>
-        bool IsReady { get; }
+        bool IsReady();
 
         /// <summary>
         /// Tries to set the spell in its activated state, dealing damage and its effect.
