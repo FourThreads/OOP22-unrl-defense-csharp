@@ -1,3 +1,6 @@
+using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
+
 namespace SeveriTommaso.UnrealDefense.Api
 {
     /// <summary>
@@ -16,6 +19,6 @@ namespace SeveriTommaso.UnrealDefense.Api
         /// Tries to set the spell in its activated state, dealing damage and its effect.
         /// </summary>
         /// <param name="position">the desired place to throw th spell at</param>
-        bool IfPossibleActivate(IPosition position);
+        bool IfPossibleActivate(Position position);
     }
 }

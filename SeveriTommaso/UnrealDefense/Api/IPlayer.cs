@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using BudaFrancesco.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
 
 namespace SeveriTommaso.UnrealDefense.Api
 {
@@ -30,7 +32,7 @@ namespace SeveriTommaso.UnrealDefense.Api
         /// <param name="pos">the position where to place it</param>
         /// <param name="towerName">the type of tower to build</param>
         /// <returns>true if the tower has been built, false otherwise</returns>
-        bool BuildTower(IPosition pos, string towerName);
+        bool BuildTower(Position pos, string towerName);
 
         /// <summary>
         /// Places a new spell on the world map effecting enemies.
@@ -38,7 +40,7 @@ namespace SeveriTommaso.UnrealDefense.Api
         /// <param name="pos">the position where to place it</param>
         /// <param name="name">the type of spell to throw</param>
         /// <returns>true if the spell has been thrown, false otherwise</returns>
-        bool ThrowSpell(IPosition pos, string name);
+        bool ThrowSpell(Position pos, string name);
 
         /// <summary>
         /// Updates the state of the spells.

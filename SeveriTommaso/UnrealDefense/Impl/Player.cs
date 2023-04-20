@@ -1,3 +1,5 @@
+using BudaFrancesco.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
 using SeveriTommaso.UnrealDefense.Api;
 
 namespace SeveriTommaso.UnrealDefense.Impl
@@ -23,9 +25,9 @@ namespace SeveriTommaso.UnrealDefense.Impl
             _spells = new Dictionary<string, ISpell>();
         }
 
-        public bool BuildTower(IPosition pos, string towerName) => World != null && World.TryBuildTower(pos, towerName);
+        public bool BuildTower(Position pos, string towerName) => World != null && World.TryBuildTower(pos, towerName);
 
-        public bool ThrowSpell(IPosition pos, string name) => _spells.ContainsKey(name) && _spells[name].IfPossibleActivate(pos);
+        public bool ThrowSpell(Position pos, string name) => _spells.ContainsKey(name) && _spells[name].IfPossibleActivate(pos);
 
         public void UpdateSpellState(long elapsed)
         {

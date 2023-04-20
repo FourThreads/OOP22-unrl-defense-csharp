@@ -1,67 +1,92 @@
+using BudaFrancesco.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
+using MagliaDanilo.UnrealDefense.Impl;
 using SeveriTommaso.UnrealDefense.Api;
 using SeveriTommaso.UnrealDefense.Impl;
 
 namespace SeveriTommasoTest
 {
-    using UnrealDefense.Api;
-
     /// <summary>
     /// Test class for SpellImpl.
     /// </summary>
     [TestClass]
     class SpellImplTest
     {
-        private const long TestRechargeTime = 3 * 1000;
-        private const long TestLingeringEffectTime = 2 * 1000;
-        private const long TestLingeringEffectFrequency = 1 * 1000;
-        private readonly ISpell _testSpell;
+        private readonly ISpell _testFireBall;
+        private readonly ISpell _testSnowStorm;
         private readonly IWorld _testWorld;
         
         /// <summary>
         /// Initializes the values before each test.
         /// </summary>
-        public SpellImplTest(IWorld testWorld)
+        public SpellImplTest()
         {
             //testWorld = new World.Builder("testWorld", new PlayerImpl(), new Position(0, 0), 0, 0)
             //        .addPathSegment(Direction.END, 0)
             //        .build();
-            // The fireball spell is used to initialize the testSpell
-            // but this is just an example, the test should work with any spell
-            _testSpell = new FireBall();
-            _testSpell.ParentWorld = _testWorld;
-            _testWorld = testWorld;
-        } 
-        
+            _testFireBall = new FireBall();
+            _testSnowStorm = new SnowStorm();
+            _testFireBall.ParentWorld = _testWorld;
+            _testSnowStorm.ParentWorld = _testWorld;
+        }
+
         /// <summary>
         /// Test if the activation, attack, effect and deactivation methods work.
+        /// Fireball is taken as the tested spell but either one works
         /// </summary>
         [TestMethod]
         public void TestActivation() {
             // Checks if the spell activates before time
             // An empty position is used since it doesn't matter
-            IPosition testPosition = new Position(0, 0);
-            _testSpell.UpdateState(TestRechargeTime - 1 * 1000);
-            Assert.isFalse(_testSpell.IfPossibleActivate(testPosition));
-            _testSpell.UpdateState(1 * 1000);
-            Assert.IsTrue(_testSpell.IsReady());
-            // Once ready it spawns an enemy with the exact amount of health 
-            // so that the enemy dies only after all the damage possible is dealt by the spell
-            double targetStartingHealth = TEST_DAMAGE 
-                    + (TEST_LINGERING_DAMAGE * (TestLingeringEffectTime / TestLingeringEffectFrequency));
-            IEnemy testTarget = new Enemy("test", targetStartingHealth, 0, 0);
-            _testWorld.SpawnEnemy(testTarget, testPosition);
-            // places the spell on the enemy
-            Assert.IsTrue(_testSpell.IfPossibleActivate(testTarget.Position()));
-            // Checks if the enemy targeted actually took the main damage
-            Assert.AreEqual(testTarget.GetHealth(), targetStartingHealth - TEST_DAMAGE);
-            // Checks if the enemy targeted actually took the lingering damage
-            _testSpell.UpdateState(TestLingeringEffectFrequency);
-            Assert.IsEqual(testTarget.GetHealth(), targetStartingHealth - TEST_DAMAGE - TEST_LINGERING_DAMAGE);
-            // Cheks if the enemy targeted is dead after the remaining time
-            _testSpell.UpdateState(TestLingeringEffectTime - TestLingeringEffectFrequency);
-            Assert.IsTrue(testTarget.isDead());
+            Position testPosition = new Position(0, 0);
+            _testFireBall.UpdateState(FireBall.FbRechargeTime - 1 * 1000);
+            Assert.IsFalse(_testFireBall.IfPossibleActivate(testPosition));
+            _testFireBall.UpdateState(1 * 1000);
+            // Checks if the spell activates after due time
+            Assert.IsTrue(_testFireBall.IsReady());
+            _testFireBall.UpdateState(FireBall.FbLingeringEffectTime);
             // After the spell activation time has passed the spell should deactivate
-            Assert.IsFalse(_testSpell.isActive());
+            Assert.IsFalse(_testFireBall.IsActive());
+        }
+
+        /// <summary>
+        /// Test if the fireball effect is applied correctly.
+        /// </summary>
+        [TestMethod]
+        public void TestFireBallEffect()
+        {
+            _testFireBall.UpdateState(FireBall.FbRechargeTime);
+            const double targetStartingHealth = FireBall.FbDmg + (FireBall.FbLingeringDamage * (FireBall.FbLingeringEffectTime / FireBall.FbLingeringEffectFreq));
+            IEnemy testTarget = new Enemy("test", targetStartingHealth, 0, 0);
+            _testWorld.SpawnEnemy(testTarget, new Position(0,0));
+            // places the spell on the enemy
+            Assert.IsTrue(_testFireBall.IfPossibleActivate(testTarget.Position));
+            // Checks if the enemy targeted actually took the main damage
+            Assert.AreEqual(testTarget.Health, targetStartingHealth - FireBall.FbDmg);
+            // Checks if the enemy targeted actually took the lingering damage
+            _testFireBall.UpdateState(FireBall.FbLingeringEffectFreq);
+            Assert.AreEqual(testTarget.Health, targetStartingHealth - FireBall.FbDmg - FireBall.FbLingeringDamage);
+            // Checks if the enemy targeted is dead after the remaining time
+            _testFireBall.UpdateState(FireBall.FbLingeringEffectTime - FireBall.FbLingeringEffectFreq);
+            Assert.IsTrue(testTarget.IsDead());
+        }
+        
+        /// <summary>
+        /// Test if the snowstorm effect is applied correctly.
+        /// </summary>
+        [TestMethod]
+        public void TestSnowStormEffect()
+        {
+            _testSnowStorm.UpdateState(SnowStorm.SnRechargeTime);
+            IEnemy testTarget = new Enemy("test", 1, 0, 0);
+            const double startingSpeed = testTarget.Speed;
+            _testWorld.SpawnEnemy(testTarget, new Position(0,0));
+            // places the spell on the enemy
+            Assert.IsTrue(_testSnowStorm.IfPossibleActivate(testTarget.Position));
+            // Checks if the enemy targeted actually took the lingering effect
+            _testSnowStorm.UpdateState(SnowStorm.FbLingeringEffectFreq);
+            Assert.AreNotEqual(testTarget.Speed, startingSpeed);
         }
     }
 }

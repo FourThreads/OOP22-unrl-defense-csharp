@@ -1,3 +1,4 @@
+using MagliaDanilo.UnrealDefense.Api;
 using SeveriTommaso.UnrealDefense.Api;
 
 namespace SeveriTommaso.UnrealDefense.Impl
@@ -22,7 +23,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// <param name="rechargeTime">the recharge time of the spell</param>
         /// <param name="lingeringEffectTime">the time the spell will be active</param>
         /// <param name="lingeringEffectFrequency">the frequency in which the effect is applied</param>
-        public Spell(string name, double radius, double damage, long rechargeTime, 
+        protected Spell(string name, double radius, double damage, long rechargeTime, 
                 long lingeringEffectTime, long lingeringEffectFrequency) 
                 : base(name, radius, damage, rechargeTime)
         {

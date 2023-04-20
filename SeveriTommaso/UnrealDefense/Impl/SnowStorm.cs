@@ -1,3 +1,5 @@
+using MagliaDanilo.UnrealDefense.Api;
+
 namespace SeveriTommaso.UnrealDefense.Impl
 {
     /// <summary>
@@ -16,12 +18,31 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// </summary>
         public const double SnRad = 7.0;
 
-        private const long SnRechargeTime = 6 * 1000;
-        private const double SnDmg = 0.0;
-        private const long SnLingeringEffectTime = 6 * 1000;
-        private const long SnLingeringEffectFreq = 500;
+        /// <summary>
+        /// The recharge time taken by the snowstorm
+        /// </summary>
+        public const long SnRechargeTime = 6 * 1000;
+        
+        /// <summary>
+        /// The damage inflicted by snowstorm
+        /// </summary>
+        public const double SnDmg = 0.0;
+        
+        /// <summary>
+        /// The lingering effect time
+        /// </summary>
+        public const long SnLingeringEffectTime = 6 * 1000;
+        
+        /// <summary>
+        /// The frequency the effect is dealt by snowstorm
+        /// </summary>
+        public const long SnLingeringEffectFreq = 500;
 
-        private const double SnSpeedReduction = 0.2;
+        /// <summary>
+        /// The speed reduction inflicted by snowstorm
+        /// </summary>
+        public const double SnSpeedReduction = 0.2;
+        
         private readonly ISet<IEnemy> _enemiesEffected = new HashSet<IEnemy>();
 
         /// <summary>
@@ -31,7 +52,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
             : base(SnName, SnRad, SnDmg, SnRechargeTime, SnLingeringEffectTime, SnLingeringEffectFreq) { }
 
         protected override void Effect(IEnemy target) {
-            target.SetSpeed(target.Speed() - (target.Speed() * SnSpeedReduction));
+            target.Speed = target.Speed - (target.Speed * SnSpeedReduction);
             _enemiesEffected.Add(target);
         }
 
