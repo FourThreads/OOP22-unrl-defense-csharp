@@ -18,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-    <ProjectReference Include="..\UnrealDefense.csproj"/>
+    <ProjectReference Include=".\SeveriTommaso\SeveriTommaso.csproj"/>
     </ItemGroup>
 
 </Project>
