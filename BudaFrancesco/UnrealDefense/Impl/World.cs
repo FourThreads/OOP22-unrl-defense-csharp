@@ -7,7 +7,7 @@ using MagliaDanilo.UnrealDefense.Common;
 
 namespace BudaFrancesco.UnrealDefense.Impl
 {
-    public class WorldImpl : IWorld
+    public class World : IWorld
     {
 
         public String Name { get; }
@@ -15,7 +15,7 @@ namespace BudaFrancesco.UnrealDefense.Impl
         private readonly IBank _bank;
         private readonly IList<IEnemy> _livingEnemies;
         
-        private WorldImpl (String name, IIntegrity castleIntegrity, IBank bank) {
+        private World (String name, IIntegrity castleIntegrity, IBank bank) {
             Name = name;
             _castleIntegrity = castleIntegrity;
             _bank = bank;
