@@ -1,3 +1,5 @@
+using SeveriTommaso.UnrealDefense.Api;
+
 public interface IEntity {
     string Name { get; }
     IPosition Position { get; set; }

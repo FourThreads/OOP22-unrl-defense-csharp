@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace UnrealDefense.Api
+namespace SeveriTommaso.UnrealDefense.Api
 {
     /// <summary>
     /// A player in a strategic game where his position is irrelevant and spells can
@@ -17,7 +17,7 @@ namespace UnrealDefense.Api
         /// <summary>
         /// The current world.
         /// </summary>
-        IWorld World { get; set; }
+        IWorld? World { get; set; }
 
         /// <summary>
         /// The player's spells.

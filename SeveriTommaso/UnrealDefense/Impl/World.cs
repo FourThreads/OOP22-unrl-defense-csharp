@@ -1,5 +1,6 @@
-using System.Collections.Generic;
-using UnrealDefense.Api;
+using SeveriTommaso.UnrealDefense.Api;
+
+namespace SeveriTommaso.UnrealDefense.Impl;
 
 public class World : IWorld
 {

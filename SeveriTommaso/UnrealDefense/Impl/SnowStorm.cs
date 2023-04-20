@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace UnrealDefense.Impl
+namespace SeveriTommaso.UnrealDefense.Impl
 {
     /// <summary>
     /// An ice spell used in a tower defense game to slow down enemies.
@@ -11,35 +9,36 @@ namespace UnrealDefense.Impl
         /// <summary>
         /// The name of the spell unique to the object type.
         /// </summary>
-        public static readonly string NAME = "snow_storm";
+        public const string SnName = "snow_storm";
+
         /// <summary>
         /// The radius of the spell unique to the object type.
         /// </summary>
-        public static readonly double RAD = 7.0;
-        private static readonly long RECHARGE_TIME = 6 * 1000;
-        private static readonly double DMG = 0.0;
-        private static readonly long LINGERING_EFFECT_TIME = 6 * 1000;
-        private static readonly long LINGERING_EFFECT_FREQ = 500;
+        public const double SnRad = 7.0;
 
-        private static readonly double SPEED_REDUCTION = 0.2;
-        private readonly ISet<IEnemy> enemiesEffected = new HashSet<IEnemy>();
+        private const long SnRechargeTime = 6 * 1000;
+        private const double SnDmg = 0.0;
+        private const long SnLingeringEffectTime = 6 * 1000;
+        private const long SnLingeringEffectFreq = 500;
+
+        private const double SnSpeedReduction = 0.2;
+        private readonly ISet<IEnemy> _enemiesEffected = new HashSet<IEnemy>();
 
         /// <summary>
         /// Creates a new spell of type ice.
         /// </summary>
         public SnowStorm() 
-            : base(NAME, RAD, DMG, RECHARGE_TIME, LINGERING_EFFECT_TIME, LINGERING_EFFECT_FREQ) { }
+            : base(SnName, SnRad, SnDmg, SnRechargeTime, SnLingeringEffectTime, SnLingeringEffectFreq) { }
 
         protected override void Effect(IEnemy target) {
-            target.SetSpeed(target.Speed() - (target.Speed() * SPEED_REDUCTION));
-            enemiesEffected.Add(target);
+            target.SetSpeed(target.Speed() - (target.Speed() * SnSpeedReduction));
+            _enemiesEffected.Add(target);
         }
 
-        protected override void ResetEffect() {
-            foreach (IEnemy e in enemiesEffected) {
-                e.ResetSpeed();
-            }
-            enemiesEffected.Clear();
+        protected override void ResetEffect()
+        {
+            foreach (IEnemy e in _enemiesEffected) e.ResetSpeed();
+            _enemiesEffected.Clear();
         }
     }
 }

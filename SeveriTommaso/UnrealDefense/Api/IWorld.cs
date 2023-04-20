@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using UnrealDefense.Api;
+namespace SeveriTommaso.UnrealDefense.Api;
 
 public interface IWorld
 {

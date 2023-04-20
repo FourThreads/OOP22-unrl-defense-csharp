@@ -1,6 +1,7 @@
-namespace UnrealDefense.Impl
-{   
-    using UnrealDefense.Api;
+using SeveriTommaso.UnrealDefense.Api;
+
+namespace SeveriTommaso.UnrealDefense.Impl
+{
     /// <summary>
     /// Implementation of a generic spell in a tower defense game.
     /// </summary>
@@ -30,7 +31,7 @@ namespace UnrealDefense.Impl
             _active = false;
             _lingerTime = 0;
         }
-
+        
         public bool IsActive() => _active;
 
         public bool IsReady() => TimeSinceLastAction >= AttackRate && !IsActive();

@@ -1,17 +1,19 @@
-using UnrealDefense.Api;
+using SeveriTommaso.UnrealDefense.Api;
+
+namespace SeveriTommaso.UnrealDefense.Impl;
 
 public abstract class DefenseEntity : IEntity
 {
     public string Name { get; set; }
-    public double Radius { get; set; }
-    public double Damage { get; set; }
+    protected double Radius { get; set; }
+    protected double Damage { get; set; }
     public long RechargeTime { get; set; }
     public IPosition Position { get; set; }
     public IWorld ParentWorld { get; set; }
     public long AttackRate { get; set; }
     public long TimeSinceLastAction { get; set; }
 
-    public DefenseEntity(string name, double radius, double damage, long rechargeTime)
+    protected DefenseEntity(string name, double radius, double damage, long rechargeTime)
     {
         Name = name;
         Radius = radius;
@@ -23,7 +25,7 @@ public abstract class DefenseEntity : IEntity
 
     public void ResetElapsedTime() { }
 
-    public void CheckAttack() { }
+    protected static void CheckAttack() { }
 
     public void IncrementTime(long elapsed) { }
 }

@@ -1,4 +1,4 @@
-namespace UnrealDefense.Impl
+namespace SeveriTommaso.UnrealDefense.Impl
 {
     /**
     * A fireball spell that can be used in a tower defense game.
@@ -14,25 +14,27 @@ namespace UnrealDefense.Impl
         /// <summary>
         /// The name of the spell unique to the object type.
         /// </summary>
-        public static string NAME = "fireball";
+        public const string FbName = "fireball";
+
         /// <summary>
         /// The radius of the spell unique to the object type.
         /// </summary>
-        public static readonly double RAD = 6.0;
-        private static readonly long RECHARGE_TIME = 8 * 1000;
-        private static readonly double DMG = 20.0;
-        private static readonly long LINGERING_EFFECT_TIME = 5 * 1000;
-        private static readonly long LINGERING_EFFECT_FREQ = 1 * 1000;
+        public const double FbRad = 6.0;
 
-        private static readonly double LINGERING_DAMAGE = 4.0;
+        private const long FbRechargeTime = 8 * 1000;
+        private const double FbDmg = 20.0;
+        private const long FbLingeringEffectTime = 5 * 1000;
+        private const long FbLingeringEffectFreq = 1 * 1000;
+
+        private const double FbLingeringDamage = 4.0;
 
         /// <summary>
         /// Creates a new spell of type fireball.
         /// </summary>
         public FireBall() 
-                : base(NAME, RAD, DMG, RECHARGE_TIME, LINGERING_EFFECT_TIME, LINGERING_EFFECT_FREQ) { }
+                : base(FbName, FbRad, FbDmg, FbRechargeTime, FbLingeringEffectTime, FbLingeringEffectFreq) { }
 
-        protected override void Effect(IEnemy target) => target.ReduceHealth(LINGERING_DAMAGE);
+        protected override void Effect(IEnemy target) => target.ReduceHealth(FbLingeringDamage);
 
         protected override void ResetEffect() { }
     }
