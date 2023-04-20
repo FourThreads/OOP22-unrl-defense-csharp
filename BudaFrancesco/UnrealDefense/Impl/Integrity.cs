@@ -11,8 +11,5 @@ public class Integrity : IIntegrity
         Hearts = tmp > 0 ? tmp : 0;
     }
 
-    public bool IsCompromised()
-    {
-        return Hearts == 0;
-    }
+    public bool IsCompromised() => Hearts == 0;
 }
