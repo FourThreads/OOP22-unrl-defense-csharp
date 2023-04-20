@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Globalization;
-using System.Runtime.ConstrainedExecution;
 using BudaFrancesco.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Common;
@@ -36,5 +33,21 @@ namespace BudaFrancesco.UnrealDefense.Impl
         public int GetHearts() => _castleIntegrity.Hearts;
 
         public double GetMoney() => _bank.Money;
+
+        public class Builder
+        {
+            private readonly String _name;
+            private readonly IIntegrity _castleIntegrity;
+            private readonly IBank _bank;
+
+            public Builder(String worldName, int castleHearts, int startingMoney)
+            {
+                _name = worldName;
+                _castleIntegrity = new Integrity(castleHearts);
+                _bank = new Bank(startingMoney);
+            }
+
+            public World Build() => new World(_name, _castleIntegrity, _bank);
+        }
     }
 }
