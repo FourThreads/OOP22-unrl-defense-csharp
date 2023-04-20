@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Runtime.ConstrainedExecution;
 using BudaFrancesco.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
 
 namespace BudaFrancesco.UnrealDefense.Impl
 {
@@ -24,13 +25,13 @@ namespace BudaFrancesco.UnrealDefense.Impl
         public void SpawnEnemy(IEnemy enemy, Position pos)
         {
             _livingEnemies.Add(enemy);
-            enemy.setPosition(pos.X, pos.Y);
+            enemy.Position = pos;
         }
 
         private double distance(Position a, Position b) => Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
 
         public IList<IEnemy> SorroundingEnemies(Position center, double radius) =>
-            _livingEnemies.Where(e => distance(e.getPosition(), center) <= radius);
+            _livingEnemies.Where(e => distance(e.Position, center) <= radius).ToList();
 
         public int GetHearts() => _castleIntegrity.Hearts;
 
