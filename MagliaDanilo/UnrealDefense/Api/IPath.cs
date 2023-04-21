@@ -1,3 +1,5 @@
+using MagliaDanilo.UnrealDefense.Common;
+
 namespace MagliaDanilo.UnrealDefense.Api
 {
     public interface IPath
@@ -10,9 +12,9 @@ namespace MagliaDanilo.UnrealDefense.Api
             Right
         }
         
-        // Pair<Direction, Double> GetDirection();
+        Pair<Direction, Double> this[int index] { get; }
         void AddDirection(Direction direction, double unit);
         
-        // Position SpawningPoint { get; }
+        Position SpawningPoint { get; }
     }
 }
