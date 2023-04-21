@@ -5,7 +5,7 @@ namespace MagliaDanilo.UnrealDefense.Api
         double Health { get; }
         double Speed { get; set; }
         double DropAmount { get; }
-
+        void ReduceHealth(double amount);
         void ResetSpeed();
         bool IsDead();
         bool HasReachedEndOfPath();
