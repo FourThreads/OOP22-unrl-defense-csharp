@@ -6,6 +6,8 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <RootNamespace>CerediTommasoTest</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,7 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\CerediTommaso\CerediTommaso.csproj" />
+      <ProjectReference Include="..\CerediTommaso\CerediTommaso.csproj" />
     </ItemGroup>
 
 </Project>

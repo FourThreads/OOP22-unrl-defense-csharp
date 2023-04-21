@@ -4,9 +4,9 @@ namespace CerediTommaso.UnrealDefense.Impl
 {
     public sealed class Hunter : Tower
     {
-        private const int HtCost = 100;
+        public const int HtCost = 100;
         private const int HtDamage = 5;
-        private const long HtAttackForSecond = 750;
+        public const long HtAttackForSecond = 750;
 
         public static readonly string HtName = "hunter";
 
