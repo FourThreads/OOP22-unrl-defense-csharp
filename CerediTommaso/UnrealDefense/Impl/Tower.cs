@@ -1,4 +1,9 @@
-﻿System.Collections.Generic;
+﻿using CerediTommaso.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Impl;
+
+using System.Collections.Generic;
+using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
 
 namespace CerediTommaso.UnrealDefense.Impl
 {
@@ -8,9 +13,10 @@ namespace CerediTommaso.UnrealDefense.Impl
     /// <author> tommaso.ceredi@studio.unibo.it </author>
     public abstract class Tower : DefenseEntity, ITower
     {
-        private readonly int cost;
-        private Enemy? target;
-        
+        private IEnemy? _target;
+        public int Cost { get; }
+        public IEnemy? Target { get=>_target; }
+
         /// <summary>
         /// Constructor of the tower.
         /// </summary>
@@ -19,40 +25,38 @@ namespace CerediTommaso.UnrealDefense.Impl
         /// <param name="damage"> the damage of the tower </param>
         /// <param name="attackRate"> the attack rate of the tower </param>
         /// <param name="cost"> the cost of the tower </param>
-        public Tower(string name, int radius, int damage, int attackRate, int cost) : base(name, radius, damage, attackRate)
+        public Tower(string name, double radius, int damage, long attackRate, int cost) : base(name, radius, damage, attackRate)
         {
-            this.cost = cost;
+            Cost = cost;
         }
         
-        public abstract Tower Copy();
+        public abstract ITower Copy();
         
-        public int Cost => this.cost;
 
-        public void UpdateState(long time)
+        public override void UpdateState(long time)
         {
-            this.IncrementTime(time);
-            this.CheckAttack();
+            IncrementTime(time);
+            CheckAttack();
         }
 
         protected override void Attack()
         {
-            List<Enemy> enemiesInRange = this.ParentWorld.SorroundingEnemies(this.Position.Value, this.Radius);
+            if (ParentWorld == null || Position == null) return;
+            IList<IEnemy> enemiesInRange = ParentWorld.SorroundingEnemies(Position, Radius);
             if (enemiesInRange.Count > 0)
             {
-                if this.target == null || !enemiesInRange.Contains(this.target.Value)
+                if (_target == null || !enemiesInRange.Contains(_target))
                 {
-                    this.target = enemiesInRange[0];
+                    _target = enemiesInRange[0];
                 }
-                this.target.Value.ReduceHealth(this.Damage);
-                this.AdditionalAttack(this.target.Value);
+                _target.ReduceHealth(this.Damage);
+                AdditionalAttack(_target);
             } else
             {
-                this.target = null;
+                _target = null;
             }
         }
-        
-        public Enemy? Target => this.target;
-        
-        protected abstract void AdditionalAttack(Enemy enemy);
+
+        protected abstract void AdditionalAttack(IEnemy enemy);
     }
 }

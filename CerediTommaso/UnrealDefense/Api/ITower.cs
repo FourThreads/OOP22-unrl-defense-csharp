@@ -23,6 +23,6 @@ namespace CerediTommaso.UnrealDefense.Api
         /// <summary>
         /// The enemy that the tower is attacking, if any.
         /// </summary>
-        Enemy? Target { get; }
+        IEnemy? Target { get; }
     }
 }
