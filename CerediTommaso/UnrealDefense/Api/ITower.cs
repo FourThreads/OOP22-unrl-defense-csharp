@@ -1,4 +1,5 @@
-using System;
+using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Impl;
 
 namespace CerediTommaso.UnrealDefense.Api
 {
@@ -17,13 +18,11 @@ namespace CerediTommaso.UnrealDefense.Api
         /// <summary>
         /// Create a copy of the tower.
         /// </summary>
-        Tower Copy();
-        
-        void override SetParentWorld(World world);
+        ITower Copy();
         
         /// <summary>
         /// The enemy that the tower is attacking, if any.
         /// </summary>
-        Enemy Target { get; }
+        Enemy? Target { get; }
     }
 }

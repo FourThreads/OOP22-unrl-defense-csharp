@@ -1,57 +1,55 @@
 ﻿using System;
+using MagliaDanilo.UnrealDefense.Impl;
 
 namespace CerediTommaso.UnrealDefense.Impl
 {
     public abstract class DefenseEntity : Entity
     {
-        private readonly double radius;
-        private readonly int damage;
-        private readonly int attackRate;
-        private long timeSinceLastAction;
-        private bool isAttacking;
+        private readonly double _radius;
+        private readonly int _damage;
+        private readonly int _attackRate;
+        private long _timeSinceLastAction;
+        private bool _isAttacking;
         
         public DefenseEntity(string name, double radius, int damage, int attackRate) : base(name)
         {
-            this.radius = radius;
-            this.damage = damage;
-            this.attackRate = attackRate;
-            this.timeSinceLastAction = 0;
-            this.isAttacking = false;
+            _radius = radius;
+            _damage = damage;
+            _attackRate = attackRate;
+            _timeSinceLastAction = 0;
+            _isAttacking = false;
         }
         
-        public double Radius => this.radius;
+        public int Damage { get=>_damage; }
+        public double Radius { get=>_radius; }
+        public int AttackRate { get=>_attackRate; }
+        public bool IsAttacking { get=>_isAttacking; }
+        public long TimeSinceLastAction { get=>_timeSinceLastAction; }
         
-        public int Damage => this.damage;
-        
-        public int AttackRate => this.attackRate;
-        
-        public long TimeSinceLastAction => this.timeSinceLastAction;
-
         public void IncrementTime(long amount)
         {
-            this.timeSinceLastAction += amount;
+            _timeSinceLastAction += amount;
         }
         
         public void ResetElapsedTime()
         {
-            this.timeSinceLastAction = 0;
+            _timeSinceLastAction = 0;
         }
         
         public void CheckAttack()
         {
-            if (this.timeSinceLastAction >= this.attackRate)
+            if (_timeSinceLastAction >= _attackRate)
             {
-                this.ResetElapsedTime();
-                this.isAttacking = true;
-                this.Attack();
+                ResetElapsedTime();
+                _isAttacking = true;
+                Attack();
             } else
             {
-                this.isAttacking = false;
+                _isAttacking = false;
             }
         }
         
         protected abstract void Attack();
         
-        public bool IsAttacking => this.isAttacking;
     }
 }
