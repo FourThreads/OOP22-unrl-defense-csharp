@@ -1,29 +1,21 @@
-using System.Collections.Generic;
+using MagliaDanilo.UnrealDefense.Api;
 
 namespace CerediTommaso.UnrealDefense.Impl
 {
-    public sealed class Connon : Tower
+    public sealed class Hunter : Tower
     {
-        private const int COST = 100;
-        private const int DAMAGE = 5;
-        private const long ATTACK_FOR_SECOND = 750;
-        
-        public static readonly string NAME = "hunter";
-        
-        public static readonly double RADIUS = 15;
-        
-        private static readonly double EXPLOSION_RADIUS = 5;
-        
-        public Hunter() : base(NAME, RADIUS, DAMAGE, ATTACK_FOR_SECOND, COST)
-        {
-        }
-        
-        public override Tower Copy()
-        {
-            return new Hunter();
-        }
+        private const int HtCost = 100;
+        private const int HtDamage = 5;
+        private const long HtAttackForSecond = 750;
 
-        protected override void AdditionalAttack(Enemy enemy)
-        {
-        }
+        public static readonly string HtName = "hunter";
+
+        public static readonly double HtRadius = 15;
+
+        public Hunter() : base(HtName, HtRadius, HtDamage, HtAttackForSecond, HtCost){}
+
+        public override Tower Copy() => new Hunter();
+
+        protected override void AdditionalAttack(IEnemy enemy) {}
     }
+}

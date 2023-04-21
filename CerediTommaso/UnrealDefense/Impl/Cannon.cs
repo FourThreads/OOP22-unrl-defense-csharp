@@ -1,37 +1,33 @@
-using System.Collections.Generic;
+using MagliaDanilo.UnrealDefense.Api;
 
 namespace CerediTommaso.UnrealDefense.Impl
 {
-    public sealed class Connon : Tower
+    public sealed class Cannon : Tower
     {
-        private const int COST = 200;
-        private const int DAMAGE = 10;
-        private const long ATTACK_FOR_SECOND = 2000;
-        
-        public static readonly string NAME = "cannon";
-        
-        public static readonly double RADIUS = 20;
-        
-        private static readonly double EXPLOSION_RADIUS = 5;
-        
-        public Cannon() : base(NAME, RADIUS, DAMAGE, ATTACK_FOR_SECOND, COST)
+        private const int CnCost = 200;
+        private const int CnDamage = 10;
+        private const long CnAttackForSecond = 2000;
+        public static readonly string CnName = "cannon";
+        public static readonly double CnRadius = 20;
+        private static readonly double CnExplosionRadius = 5;
+
+        public Cannon() : base(CnName, CnRadius, CnDamage, CnAttackForSecond, CnCost)
         {
         }
-        
-        public override Tower Copy()
+
+        public override Tower Copy() => new Cannon();
+
+        protected override void AdditionalAttack(IEnemy enemy)
         {
-            return new Cannon();
-        }
-        
-        protected override void AdditionalAttack(Enemy enemy)
-        {
-            List<Enemy> enemiesInRange = this.ParentWorld.SorroundingEnemies(enemy.Position.Value, EXPLOSION_RADIUS);
+            if (enemy.Position == null || ParentWorld == null) return;
+            IList<IEnemy> enemiesInRange = ParentWorld.SorroundingEnemies(enemy.Position, CnExplosionRadius);
             if (enemiesInRange.Count > 0)
             {
-                foreach (Enemy e in enemiesInRange)
+                foreach (IEnemy e in enemiesInRange)
                 {
-                    e.ReduceHealth(this.Damage);
+                    e.ReduceHealth(CnDamage);
                 }
             }
         }
     }
+}

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BudaFrancesco.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Impl;
 
 namespace CerediTommaso.UnrealDefense.Impl
@@ -7,11 +7,11 @@ namespace CerediTommaso.UnrealDefense.Impl
     {
         private readonly double _radius;
         private readonly int _damage;
-        private readonly int _attackRate;
+        private readonly long _attackRate;
         private long _timeSinceLastAction;
         private bool _isAttacking;
         
-        public DefenseEntity(string name, double radius, int damage, int attackRate) : base(name)
+        public DefenseEntity(string name, double radius, int damage, long attackRate) : base(name)
         {
             _radius = radius;
             _damage = damage;
@@ -22,9 +22,10 @@ namespace CerediTommaso.UnrealDefense.Impl
         
         public int Damage { get=>_damage; }
         public double Radius { get=>_radius; }
-        public int AttackRate { get=>_attackRate; }
+        public long AttackRate { get=>_attackRate; }
         public bool IsAttacking { get=>_isAttacking; }
         public long TimeSinceLastAction { get=>_timeSinceLastAction; }
+        public IWorld? ParentWorld { get; set; }
         
         public void IncrementTime(long amount)
         {
@@ -35,7 +36,7 @@ namespace CerediTommaso.UnrealDefense.Impl
         {
             _timeSinceLastAction = 0;
         }
-        
+
         public void CheckAttack()
         {
             if (_timeSinceLastAction >= _attackRate)
