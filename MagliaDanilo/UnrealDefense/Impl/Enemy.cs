@@ -7,11 +7,11 @@ public class Enemy : Entity, IEnemy
 {
     
     private readonly double _defaultSpeed;
-    public double Health { get; }
+    public double Health { get; private set; }
     public double Speed { get; set; }
     public double DropAmount { get; }
     
-    public Enemy(Position position, string name, double health, double speed, double dropAmount) : base(position, name)
+    public Enemy(string name, double health, double speed, double dropAmount) : base(name)
     {
         Health = health;
         Speed = speed;
@@ -24,6 +24,11 @@ public class Enemy : Entity, IEnemy
         throw new NotImplementedException();
     }
 
+
+    public void ReduceHealth(double amount)
+    {
+        Health -= amount;
+    }
 
     public void ResetSpeed()
     {
@@ -47,6 +52,6 @@ public class Enemy : Entity, IEnemy
 
     public IEnemy Copy()
     {
-        return new Enemy(Position, Name, Health, _defaultSpeed, DropAmount);
+        return new Enemy(Name, Health, _defaultSpeed, DropAmount);
     }
 }
