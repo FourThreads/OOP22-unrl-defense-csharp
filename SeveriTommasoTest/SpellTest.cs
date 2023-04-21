@@ -1,4 +1,5 @@
 using BudaFrancesco.UnrealDefense.Api;
+using BudaFrancesco.UnrealDefense.Impl;
 using MagliaDanilo.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Common;
 using MagliaDanilo.UnrealDefense.Impl;
@@ -13,8 +14,8 @@ namespace SeveriTommasoTest
     [TestClass]
     class SpellImplTest
     {
-        private readonly ISpell _testFireBall;
-        private readonly ISpell _testSnowStorm;
+        private readonly Spell _testFireBall;
+        private readonly Spell _testSnowStorm;
         private readonly IWorld _testWorld;
         
         /// <summary>
@@ -22,9 +23,7 @@ namespace SeveriTommasoTest
         /// </summary>
         public SpellImplTest()
         {
-            //testWorld = new World.Builder("testWorld", new PlayerImpl(), new Position(0, 0), 0, 0)
-            //        .addPathSegment(Direction.END, 0)
-            //        .build();
+            _testWorld = new World.Builder("test", 1, 0).Build();
             _testFireBall = new FireBall();
             _testSnowStorm = new SnowStorm();
             _testFireBall.ParentWorld = _testWorld;
@@ -61,7 +60,7 @@ namespace SeveriTommasoTest
             IEnemy testTarget = new Enemy("test", targetStartingHealth, 0, 0);
             _testWorld.SpawnEnemy(testTarget, new Position(0,0));
             // places the spell on the enemy
-            Assert.IsTrue(_testFireBall.IfPossibleActivate(testTarget.Position));
+            Assert.IsTrue(testTarget.Position != null && _testFireBall.IfPossibleActivate(testTarget.Position));
             // Checks if the enemy targeted actually took the main damage
             Assert.AreEqual(testTarget.Health, targetStartingHealth - FireBall.FbDmg);
             // Checks if the enemy targeted actually took the lingering damage
@@ -80,12 +79,12 @@ namespace SeveriTommasoTest
         {
             _testSnowStorm.UpdateState(SnowStorm.SnRechargeTime);
             IEnemy testTarget = new Enemy("test", 1, 0, 0);
-            const double startingSpeed = testTarget.Speed;
+            double startingSpeed = testTarget.Speed;
             _testWorld.SpawnEnemy(testTarget, new Position(0,0));
             // places the spell on the enemy
-            Assert.IsTrue(_testSnowStorm.IfPossibleActivate(testTarget.Position));
+            Assert.IsTrue(testTarget.Position != null && _testSnowStorm.IfPossibleActivate(testTarget.Position));
             // Checks if the enemy targeted actually took the lingering effect
-            _testSnowStorm.UpdateState(SnowStorm.FbLingeringEffectFreq);
+            _testSnowStorm.UpdateState(SnowStorm.SnLingeringEffectFreq);
             Assert.AreNotEqual(testTarget.Speed, startingSpeed);
         }
     }

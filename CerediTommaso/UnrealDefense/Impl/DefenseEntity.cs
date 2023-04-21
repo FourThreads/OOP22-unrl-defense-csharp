@@ -6,12 +6,12 @@ namespace CerediTommaso.UnrealDefense.Impl
     public abstract class DefenseEntity : Entity
     {
         private readonly double _radius;
-        private readonly int _damage;
+        private readonly double _damage;
         private readonly long _attackRate;
         private long _timeSinceLastAction;
         private bool _isAttacking;
         
-        public DefenseEntity(string name, double radius, int damage, long attackRate) : base(name)
+        public DefenseEntity(string name, double radius, double damage, long attackRate) : base(name)
         {
             _radius = radius;
             _damage = damage;
@@ -20,7 +20,7 @@ namespace CerediTommaso.UnrealDefense.Impl
             _isAttacking = false;
         }
         
-        public int Damage { get=>_damage; }
+        public double Damage { get=>_damage; }
         public double Radius { get=>_radius; }
         public long AttackRate { get=>_attackRate; }
         public bool IsAttacking { get=>_isAttacking; }

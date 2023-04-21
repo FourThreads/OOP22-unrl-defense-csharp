@@ -25,7 +25,12 @@ namespace SeveriTommaso.UnrealDefense.Impl
             _spells = new Dictionary<string, ISpell>();
         }
 
-        public bool BuildTower(Position pos, string towerName) => World != null && World.TryBuildTower(pos, towerName);
+        public bool BuildTower(Position pos, string towerName)
+        {
+            return World != null;
+                    // Not Implemented
+                    // && World.TryBuildTower(pos, towerName);
+        }
 
         public bool ThrowSpell(Position pos, string name) => _spells.ContainsKey(name) && _spells[name].IfPossibleActivate(pos);
 

@@ -1,4 +1,6 @@
+using CerediTommaso.UnrealDefense.Impl;
 using MagliaDanilo.UnrealDefense.Api;
+using MagliaDanilo.UnrealDefense.Common;
 using SeveriTommaso.UnrealDefense.Api;
 
 namespace SeveriTommaso.UnrealDefense.Impl
@@ -37,7 +39,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
 
         public bool IsReady() => TimeSinceLastAction >= AttackRate && !IsActive();
 
-        public bool IfPossibleActivate(IPosition position) {
+        public bool IfPossibleActivate(Position position) {
             if (!IsActive() && IsReady()) {
                 Activate();
                 Position = position;
@@ -47,7 +49,9 @@ namespace SeveriTommaso.UnrealDefense.Impl
             return false;
         }
 
-        protected void Attack() {
+        protected override void Attack()
+        {
+            if (ParentWorld == null || Position == null) return;
             foreach (IEnemy e in ParentWorld.SorroundingEnemies(Position, Radius))
             {
                 e.ReduceHealth(Damage);
@@ -81,6 +85,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
         /// Applies the effect of the spell to the enemies in range if possible.
         /// </summary>
         private void IfPossibleApplyEffect() {
+            if (ParentWorld == null || Position == null) return;
             if (_lingerTime >= _lingeringEffectFrequency) {
                 foreach (IEnemy e in ParentWorld.SorroundingEnemies(Position, Radius))
                 {
