@@ -12,7 +12,8 @@ namespace BudaFrancesco.UnrealDefense.Impl
         private readonly IBank _bank;
         private readonly IList<IEnemy> _livingEnemies;
         
-        private World (String name, IIntegrity castleIntegrity, IBank bank) {
+        private World (String name, IIntegrity castleIntegrity, IBank bank)
+        {
             Name = name;
             _castleIntegrity = castleIntegrity;
             _bank = bank;
