@@ -2,8 +2,8 @@ namespace MagliaDanilo.UnrealDefense.Common
 {
     public class Position
     {
-        private double X { get; set; }
-        private double Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public Position(double x, double y)
         {
