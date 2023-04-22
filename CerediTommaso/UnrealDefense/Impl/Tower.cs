@@ -1,9 +1,5 @@
 ﻿using CerediTommaso.UnrealDefense.Api;
-using MagliaDanilo.UnrealDefense.Impl;
-
-using System.Collections.Generic;
 using MagliaDanilo.UnrealDefense.Api;
-using MagliaDanilo.UnrealDefense.Common;
 
 namespace CerediTommaso.UnrealDefense.Impl
 {
@@ -14,8 +10,6 @@ namespace CerediTommaso.UnrealDefense.Impl
     public abstract class Tower : DefenseEntity, ITower
     {
         private IEnemy? _target;
-        public int Cost { get; }
-        public IEnemy? Target { get=>_target; }
 
         /// <summary>
         /// Constructor of the tower.
@@ -30,8 +24,23 @@ namespace CerediTommaso.UnrealDefense.Impl
             Cost = cost;
         }
         
+        /// <summary>
+        /// Create a copy of the tower.
+        /// </summary>
+        /// <returns> a copy of the tower </returns>
         public abstract ITower Copy();
         
+        /// <summary>
+        /// The cost of the tower.
+        /// </summary>
+        /// <returns> the cost of the tower </returns>
+        public int Cost { get; }
+        
+        /// <summary>
+        /// The enemy that the tower is attacking, if any.
+        /// </summary>
+        /// <returns> the enemy that the tower is attacking, if any </returns>
+        public IEnemy? Target { get=>_target; }
 
         public override void UpdateState(long time)
         {
@@ -57,6 +66,10 @@ namespace CerediTommaso.UnrealDefense.Impl
             }
         }
 
+        /// <summary>
+        /// Additional attack of the tower.
+        /// </summary>
+        /// <param name="enemy"> the enemy that the tower is attacking </param>
         protected abstract void AdditionalAttack(IEnemy enemy);
     }
 }

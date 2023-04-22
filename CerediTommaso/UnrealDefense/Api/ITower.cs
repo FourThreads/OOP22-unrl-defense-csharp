@@ -18,11 +18,13 @@ namespace CerediTommaso.UnrealDefense.Api
         /// <summary>
         /// Create a copy of the tower.
         /// </summary>
+        /// <returns> a copy of the tower </returns>
         ITower Copy();
         
         /// <summary>
         /// The enemy that the tower is attacking, if any.
         /// </summary>
+        /// <returns> the enemy that the tower is attacking, if any </returns>
         IEnemy? Target { get; }
     }
 }

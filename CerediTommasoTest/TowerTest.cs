@@ -6,12 +6,18 @@ using MagliaDanilo.UnrealDefense.Impl;
 
 namespace CerediTommasoTest
 {
-    
+    /// <summary>
+    /// Test class for TowerImpl.
+    /// </summary>
+    /// <author> tommaso.ceredi@studio.unibo.it </author>
     [TestClass]
     public class TowerTest
     {
         private World? _testWorld;
         
+        /// <summary>
+        /// Initialize the world.
+        /// </summary>
         [TestInitialize]
         public void Init()
         {
@@ -19,6 +25,9 @@ namespace CerediTommasoTest
                 .Build();
         }
         
+        /// <summary>
+        /// Test the attack method.
+        /// </summary>
         [TestMethod]
         public void TestAttack()
         {
