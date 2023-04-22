@@ -52,10 +52,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
         protected override void Attack()
         {
             if (ParentWorld == null || Position == null) return;
-            foreach (IEnemy e in ParentWorld.SorroundingEnemies(Position, Radius))
-            {
-                e.ReduceHealth(Damage);
-            }
+            foreach (IEnemy e in ParentWorld.SorroundingEnemies(Position, Radius)) e.ReduceHealth(Damage);
         }
 
         public override void UpdateState(long time) {

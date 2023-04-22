@@ -9,7 +9,7 @@ using SeveriTommaso.UnrealDefense.Impl;
 namespace SeveriTommasoTest
 {
     /// <summary>
-    /// Test class for SpellImpl.
+    /// Test class for Spell.
     /// </summary>
     [TestClass]
     public class SpellImplTest
