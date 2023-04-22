@@ -7,14 +7,14 @@ namespace BudaFrancesco.UnrealDefense.Impl
     public class World : IWorld
     {
 
-        public String Name { get; }
+        private readonly string _name;
         private readonly IIntegrity _castleIntegrity;
         private readonly IBank _bank;
         private readonly IList<IEnemy> _livingEnemies;
         
-        private World (String name, IIntegrity castleIntegrity, IBank bank)
+        private World (string name, IIntegrity castleIntegrity, IBank bank)
         {
-            Name = name;
+            _name = name;
             _castleIntegrity = castleIntegrity;
             _bank = bank;
             _livingEnemies = new List<IEnemy>();
@@ -26,10 +26,11 @@ namespace BudaFrancesco.UnrealDefense.Impl
             enemy.Position = pos;
         }
 
-        private double distance(Position a, Position b) => Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
+        private double Distance(Position a, Position b) => Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
 
         public IList<IEnemy> SorroundingEnemies(Position center, double radius) =>
-            _livingEnemies.Where(e => distance(e.Position, center) <= radius).ToList();
+            _livingEnemies
+                .Where(e => (e.Position != null) && (Distance(e.Position, center) <= radius)).ToList();
 
         public int GetHearts() => _castleIntegrity.Hearts;
 
@@ -37,11 +38,11 @@ namespace BudaFrancesco.UnrealDefense.Impl
 
         public class Builder
         {
-            private readonly String _name;
+            private readonly string _name;
             private readonly IIntegrity _castleIntegrity;
             private readonly IBank _bank;
 
-            public Builder(String worldName, int castleHearts, int startingMoney)
+            public Builder(string worldName, int castleHearts, int startingMoney)
             {
                 _name = worldName;
                 _castleIntegrity = new Integrity(castleHearts);
