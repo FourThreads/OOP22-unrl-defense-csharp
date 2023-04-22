@@ -14,6 +14,7 @@ namespace SeveriTommaso.UnrealDefense.Impl
         public string Name { get; set; }
         public IWorld? World { get; set; }
         public ISet<ISpell> Spells { get => _spells.Values.ToHashSet(); set => _spells = value.ToDictionary(sp => sp.Name); }
+        public ISet<ISpell> ActiveSpells => Spells.Where(sp => sp.IsActive()).ToHashSet();
 
         /// <summary>
         /// Creates a new player.
@@ -38,8 +39,5 @@ namespace SeveriTommaso.UnrealDefense.Impl
         {
             foreach (ISpell sp in Spells) sp.UpdateState(elapsed);
         }
-
-        /// <returns>the set of active spells</returns>
-        public ISet<ISpell> GetActiveSpells() => Spells.Where(sp => sp.IsActive()).ToHashSet();
     }
 }
