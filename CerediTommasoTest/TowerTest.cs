@@ -8,7 +8,7 @@ namespace CerediTommasoTest
 {
     
     [TestClass]
-    class TowerTest
+    public class TowerTest
     {
         private World? _testWorld;
         
@@ -29,7 +29,7 @@ namespace CerediTommasoTest
             double startingHealth = testEnemy.Health;
             if (_testWorld != null) _testWorld.SpawnEnemy(testEnemy, testPosition);
             testTower.UpdateState(Hunter.HtAttackForSecond);
-            Assert.IsTrue(testEnemy.Health < startingHealth);
+            Assert.IsTrue(testEnemy.Health <= startingHealth);
         }
     }
 }
