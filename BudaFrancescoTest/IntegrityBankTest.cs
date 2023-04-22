@@ -25,7 +25,7 @@ public class IntegrityBankTest
         _testBank.AddMoney(200);
         
         // Checks that the final amount is 300
-        Assert.Equals(_testBank.Money, 300);
+        Assert.AreEqual(_testBank.Money, 300);
         
         // Checks that you can spend a part or all the money you got in the bank
         Assert.IsTrue(_testBank.TrySpend(100));
@@ -40,12 +40,12 @@ public class IntegrityBankTest
         
         // Damages the Integrity and Checks that the new amount of hearts is correct 
         _testIntegrity.Damage(2);
-        Assert.Equals(_testIntegrity.Hearts, 3);
+        Assert.AreEqual(_testIntegrity.Hearts, 3);
         
         // Damages the integrity of a higher value than bearable
         // Checks that the new amount of hearts is 0 and the integrity is compromised
         _testIntegrity.Damage(10);
-        Assert.Equals(_testIntegrity.Hearts, 0);
+        Assert.AreEqual(_testIntegrity.Hearts, 0);
         Assert.IsTrue(_testIntegrity.IsCompromised());
     }
 }
