@@ -1,5 +1,4 @@
 using MagliaDanilo.UnrealDefense.Api;
-using MagliaDanilo.UnrealDefense.Impl;
 
 namespace CerediTommaso.UnrealDefense.Api
 {
