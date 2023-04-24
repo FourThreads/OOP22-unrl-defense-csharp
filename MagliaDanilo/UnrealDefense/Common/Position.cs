@@ -11,7 +11,7 @@ namespace MagliaDanilo.UnrealDefense.Common
             Y = y;
         }
 
-        protected bool Equals(Position other)
+        public bool Equals(Position other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y);
         }
@@ -26,14 +26,7 @@ namespace MagliaDanilo.UnrealDefense.Common
 
         public override int GetHashCode()
         {
-            const int prime = 31;
-            int result = 1;
-            long temp;
-            temp = BitConverter.DoubleToInt64Bits(X);
-            result = prime + (int)(temp ^ (temp >> 32));
-            temp = BitConverter.DoubleToInt64Bits(Y);
-            result = prime * result + (int)(temp ^ (temp >> 32));
-            return result;
+            return base.GetHashCode();
         }
 
         public override string ToString()

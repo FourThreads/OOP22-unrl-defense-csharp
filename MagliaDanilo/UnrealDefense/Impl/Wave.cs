@@ -12,7 +12,7 @@ namespace MagliaDanilo.UnrealDefense.Impl
             _hordes = new Queue<Pair<IHorde, long>>();
         }
         
-        public Pair<IHorde, long>? GetNextHorde()
+        public Pair<IHorde, long> GetNextHorde()
         {
             return _hordes.Dequeue();
         }

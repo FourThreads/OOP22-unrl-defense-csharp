@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using MagliaDanilo.UnrealDefense.Api;
 using MagliaDanilo.UnrealDefense.Impl;
 
@@ -23,7 +22,7 @@ public class EnemyTest
         const double reduceHealthBy = 10.0;
         IEnemy testEnemy = CreateBaseEnemy();
         testEnemy.ReduceHealth(reduceHealthBy);
-        Assert.IsTrue(testEnemy.Health == (InitialHealth - reduceHealthBy));
+        Assert.IsTrue(Math.Abs(testEnemy.Health - (InitialHealth - reduceHealthBy)) < 0.001);
     }
 
     [TestMethod]
@@ -32,8 +31,8 @@ public class EnemyTest
         const double reduceSpeedBy = 2.0;
         IEnemy testEnemy = CreateBaseEnemy();
         testEnemy.Speed = InitialSpeed - reduceSpeedBy;
-        Assert.IsTrue(testEnemy.Speed == (InitialSpeed - reduceSpeedBy));
+        Assert.IsTrue(Math.Abs(testEnemy.Speed - (InitialSpeed - reduceSpeedBy)) < 0.001);
         testEnemy.ResetSpeed();
-        Assert.IsTrue(testEnemy.Speed == InitialSpeed);
+        Assert.IsTrue(Math.Abs(testEnemy.Speed - InitialSpeed) < 0.001);
     }
 }
