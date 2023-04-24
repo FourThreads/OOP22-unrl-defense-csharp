@@ -2,18 +2,13 @@ namespace MagliaDanilo.UnrealDefense.Common
 {
     public class Position
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public double X { get; }
+        public double Y { get; }
 
         public Position(double x, double y)
         {
             X = x;
             Y = y;
-        }
-
-        public bool Equals(Position other)
-        {
-            return X.Equals(other.X) && Y.Equals(other.Y);
         }
 
         public override bool Equals(object? obj)
@@ -26,8 +21,9 @@ namespace MagliaDanilo.UnrealDefense.Common
 
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return HashCode.Combine(X, Y);
         }
+
 
         public override string ToString()
         {
