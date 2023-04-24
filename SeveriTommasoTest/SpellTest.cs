@@ -23,7 +23,7 @@ namespace SeveriTommasoTest
         /// </summary>
         public SpellImplTest()
         {
-            _testWorld = new World.Builder("test", 1, 0).Build();
+            _testWorld = new World.Builder( 1, 0).Build();
             _testFireBall = new FireBall();
             _testSnowStorm = new SnowStorm();
             _testFireBall.ParentWorld = _testWorld;
