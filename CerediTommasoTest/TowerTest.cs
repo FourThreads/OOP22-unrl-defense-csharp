@@ -21,7 +21,7 @@ namespace CerediTommasoTest
         [TestInitialize]
         public void Init()
         {
-            _testWorld = new World.Builder("testWorld", 1, Hunter.HtCost)
+            _testWorld = new World.Builder( 1, Hunter.HtCost)
                 .Build();
         }
         
